@@ -1,23 +1,20 @@
-import express from 'express';
-import notesRouters from './routes/notesRoutes.js';
-import { connectDB } from './config/db.js';
-import dotenv from 'dotenv';
-import rateLimiter from './middleware/ratelimiter.js';
+import express from "express";
+import notesRouters from "./routes/notesRoutes.js";
+import { connectDB } from "./config/db.js";
+import dotenv from "dotenv";
+import rateLimiter from "./middleware/ratelimiter.js";
 
-dotenv.config()
-const app  = express();
+dotenv.config();
+const app = express();
 const PORT = process.env.PORT || 5001;
 
-app.use(express.json()); // Middleware to parse JSON bodies 
-app.use(rateLimiter)
+app.use(express.json()); // Middleware to parse JSON bodies
+app.use(rateLimiter);
 
-app.use("/api/notes",notesRouters)
+app.use("/api/notes", notesRouters);
 
-connectDB();
-
-
-
-
-app.listen(PORT, () => {
-    console.log('Server is running on PORT',PORT);
-})
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("Server is running on PORT", PORT);
+  });
+});
