@@ -1,4 +1,3 @@
-import React from 'react'
 import { Route, Routes } from 'react-router'
 import HomePage from './pages/HomePage'
 import CreatePage from './pages/CreatePage'
@@ -12,7 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/create" element={<CreatePage />} />
-        <Route path="/note/:id" element={<NoteDetailsPage />} />
+        <Route path="/note/:id" element={<NoteDetailsPage/>} />
       </Routes>
     </div>
   )
